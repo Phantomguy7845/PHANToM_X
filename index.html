@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>PHANToM X | Express Delivery Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PHANToM X Style (Dark + Neon) -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1c1c2e 0, #050510 55%, #020207 100%);
+      color: #f5f5ff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px 20px 28px;
+      border-radius: 24px;
+      background: rgba(10, 10, 25, 0.95);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(120, 255, 220, 0.25);
+      backdrop-filter: blur(16px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, #78ffd9, #3f7fff 45%, #18182a 80%);
+      box-shadow: 0 0 20px rgba(120, 255, 217, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #020208;
+      font-size: 20px;
+    }
+
+    .logo-text-main {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: #9fa8ff;
+      margin-top: 2px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #c7d0ff;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(120, 255, 220, 0.5), transparent);
+      margin: 8px 0 18px;
+    }
+
+    .role-title {
+      font-size: 13px;
+      color: #9fa8ff;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .role-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .role-btn {
+      width: 100%;
+      border-radius: 14px;
+      padding: 12px 14px;
+      border: 1px solid rgba(120, 255, 220, 0.35);
+      background: radial-gradient(circle at top left, rgba(120, 255, 220, 0.18), rgba(10, 10, 30, 0.95));
+      color: #e8f9ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .role-main {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .role-sub {
+      font-size: 11px;
+      color: #c7d0ff;
+      margin-top: 2px;
+    }
+
+    .role-icon {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .role-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(120, 255, 220, 0.8);
+      box-shadow: 0 0 18px rgba(120, 255, 220, 0.45);
+    }
+
+    .role-btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 11px;
+      text-align: center;
+      color: #7f86b8;
+    }
+
+    .footer span {
+      color: #78ffd9;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">X</div>
+      <div>
+        <div class="logo-text-main">PHANToM X</div>
+        <div class="logo-text-sub">PHANToM EXPRESS PLATFORM</div>
+      </div>
+    </div>
+
+    <div class="tagline">
+      แพลตฟอร์มส่งของแบบ <span>Real-time</span> สำหรับลูกค้า ไรเดอร์ และแอดมิน
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="role-title">choose your role</div>
+
+    <div class="role-grid">
+      <button class="role-btn" onclick="selectRole('customer')">
+        <div>
+          <div class="role-main">ฉันคือลูกค้า (Customer)</div>
+          <div class="role-sub">เรียกไรเดอร์ ส่งพัสดุ ติดตามสถานะได้ตลอดเวลา</div>
+        </div>
+        <div class="role-icon">📦</div>
+      </button>
+
+      <button class="role-btn" onclick="selectRole('rider')">
+        <div>
+          <div class="role-main">ฉันคือไรเดอร์ (Rider)</div>
+          <div class="role-sub">ดูงานในระบบ แย่งงาน ตรวจเครดิต และสรุปค่ารอบ</div>
+        </div>
+        <div class="role-icon">🏍️</div>
+      </button>
+
+      <button class="role-btn" onclick="selectRole('admin')">
+        <div>
+          <div class="role-main">ฉันคือแอดมิน (Admin)</div>
+          <div class="role-sub">ดูสถานะระบบ ออเดอร์ ไรเดอร์ เครดิต และข้อมูลลูกค้า</div>
+        </div>
+        <div class="role-icon">🛠️</div>
+      </button>
+    </div>
+
+    <div class="footer">
+      PHANToM Platform • <span>X = Express</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
