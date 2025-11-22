@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>PHANToM X – เรียกไรเดอร์</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1c1c2e 0, #050510 55%, #020207 100%);
+      color: #f5f5ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(10, 10, 25, 0.96);
+      border-radius: 24px;
+      border: 1px solid rgba(120, 255, 220, 0.35);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+      padding: 18px 18px 22px;
+      backdrop-filter: blur(16px);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 30%, #78ffd9, #3f7fff 45%, #18182a 80%);
+      box-shadow: 0 0 18px rgba(120, 255, 217, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #020208;
+      font-size: 18px;
+    }
+
+    .logo-text-main {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-text-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9fa8ff;
+    }
+
+    .back-link {
+      font-size: 11px;
+      color: #78ffd9;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: #c7d0ff;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(120, 255, 220, 0.13), rgba(10, 10, 30, 0.98));
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(120, 255, 220, 0.28);
+    }
+
+    .card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9fa8ff;
+      margin-bottom: 8px;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    label {
+      font-size: 11px;
+      color: #c7d0ff;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"] {
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      padding: 0 9px;
+      font-size: 13px;
+      background: #fefefe;
+      color: #111;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #999;
+      font-size: 11px;
+    }
+
+    .hint {
+      font-size: 10px;
+      color: #9fa8ff;
+    }
+
+    .file-input {
+      font-size: 11px;
+      color: #c7d0ff;
+    }
+
+    .inline {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .inline span {
+      font-size: 11px;
+      color: #c7d0ff;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    button {
+      border-radius: 10px;
+      border: none;
+      height: 36px;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s;
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: linear-gradient(135deg, #78ffd9, #3f7fff);
+      color: #020208;
+      box-shadow: 0 0 16px rgba(120, 255, 220, 0.55);
+    }
+
+    .btn-secondary {
+      background: rgba(10, 10, 40, 0.9);
+      color: #c7d0ff;
+      border: 1px solid rgba(120, 255, 220, 0.4);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    .summary {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #e8f9ff;
+    }
+
+    .summary span {
+      color: #78ffd9;
+      font-weight: 600;
+    }
+
+    .error {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #ff6b9b;
+    }
+
+    .success {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #78ffd9;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">X</div>
+        <div>
+          <div class="logo-text-main">PHANToM X</div>
+          <div class="logo-text-sub">CUSTOMER CONSOLE</div>
+        </div>
+      </div>
+      <div class="back-link" onclick="window.location.href='index.html'">← กลับหน้าแรก</div>
+    </div>
+
+    <div class="tagline">
+      กรอกข้อมูลพัสดุและจุดรับ–ส่งให้ครบถ้วน ระบบจะคำนวณค่ารอบอัตโนมัติ
+    </div>
+
+    <!-- ผู้ส่ง / ผู้รับ -->
+    <div class="card">
+      <div class="card-title">ข้อมูลผู้ส่ง / ผู้รับ</div>
+      <div class="field-row">
+        <div class="field">
+          <label>ชื่อผู้ส่ง</label>
+          <input type="text" id="senderName" placeholder="เช่น คุณเอ" />
+        </div>
+        <div class="field">
+          <label>เบอร์ผู้ส่ง</label>
+          <input type="tel" id="senderPhone" placeholder="เช่น 0812345678" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>ชื่อผู้รับ</label>
+          <input type="text" id="receiverName" placeholder="เช่น คุณบี" />
+        </div>
+        <div class="field">
+          <label>เบอร์ผู้รับ</label>
+          <input type="tel" id="receiverPhone" placeholder="เช่น 0898765432" />
+        </div>
+      </div>
+      <div class="hint">เบอร์โทรจะใช้ติดต่อเฉพาะระหว่างงานและเก็บในระบบตามเงื่อนไขความปลอดภัย</div>
+    </div>
+
+    <!-- จุดรับ / จุดส่ง -->
+    <div class="card">
+      <div class="card-title">จุดรับ / จุดส่ง</div>
+      <div class="field">
+        <label>ที่อยู่จุดรับ (Pickup)</label>
+        <input type="text" id="pickupAddress" placeholder="กรอกที่อยู่ หรือคำอธิบายจุดรับ" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>ละติจูดจุดรับ</label>
+          <input type="number" id="pickupLat" step="0.000001" placeholder="เช่น 13.7563" />
+        </div>
+        <div class="field">
+          <label>ลองจิจูดจุดรับ</label>
+          <input type="number" id="pickupLng" step="0.000001" placeholder="เช่น 100.5018" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>ที่อยู่จุดส่ง (Dropoff)</label>
+        <input type="text" id="dropoffAddress" placeholder="กรอกที่อยู่ หรือคำอธิบายจุดส่ง" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>ละติจูดจุดส่ง</label>
+          <input type="number" id="dropoffLat" step="0.000001" placeholder="เช่น 13.7456" />
+        </div>
+        <div class="field">
+          <label>ลองจิจูดจุดส่ง</label>
+          <input type="number" id="dropoffLng" step="0.000001" placeholder="เช่น 100.5231" />
+        </div>
+      </div>
+
+      <div class="hint">
+        เฟสแรกให้กรอกพิกัดเองก่อน ภายหลังเราจะเพิ่มแผนที่ให้เลือกจุดรับ–ส่งบนแผนที่โดยตรง
+      </div>
+    </div>
+
+    <!-- ขนาด / น้ำหนัก / รูป -->
+    <div class="card">
+      <div class="card-title">พัสดุ / ขนาด และน้ำหนัก</div>
+      <div class="field-row">
+        <div class="field">
+          <label>กว้าง (cm)</label>
+          <input type="number" id="sizeW" placeholder="≤ 40" />
+        </div>
+        <div class="field">
+          <label>ยาว (cm)</label>
+          <input type="number" id="sizeL" placeholder="≤ 40" />
+        </div>
+        <div class="field">
+          <label>สูง (cm)</label>
+          <input type="number" id="sizeH" placeholder="≤ 40" />
+        </div>
+      </div>
+      <div class="field">
+        <label>น้ำหนัก (กิโลกรัม)</label>
+        <input type="number" id="weightKg" step="0.1" placeholder="≤ 20" />
+      </div>
+      <div class="field">
+        <label>รูปพัสดุ (ไม่บังคับ แต่แนะนำ)</label>
+        <input type="file" id="packageImage" accept="image/*" class="file-input" />
+      </div>
+      <div class="hint">
+        เงื่อนไข: ขนาดต้องไม่เกิน <strong>40×40×40 cm</strong> และน้ำหนักไม่เกิน <strong>20 kg</strong>
+      </div>
+    </div>
+
+    <!-- สรุป / ปุ่ม -->
+    <div class="card">
+      <div class="card-title">คำนวณค่ารอบ</div>
+      <div class="btn-row">
+        <button class="btn-secondary" id="calcFareBtn">คำนวณค่าส่ง</button>
+        <button class="btn-primary" id="createOrderBtn">สร้างออเดอร์</button>
+      </div>
+      <div class="summary" id="fareSummary">
+        ระยะทาง: <span>-</span> กม. • ค่ารอบโดยประมาณ: <span>-</span> บาท
+      </div>
+      <div class="error" id="errorBox"></div>
+      <div class="success" id="successBox"></div>
+    </div>
+
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-storage-compat.js"></script>
+
+    <!-- ไฟล์ logic ของหน้า Customer -->
+    <script src="customer.js"></script>
+  </div>
+</body>
+</html>
